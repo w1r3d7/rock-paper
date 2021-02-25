@@ -1,7 +1,12 @@
 import React from 'react';
+import SignsList from '../signs-list';
+
 
 const GamePage = () => (
-  <h2>ReadY?</h2>
+  <>
+    <SignsList />
+  </>
+
 );
 
 export default GamePage;
