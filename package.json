@@ -3,21 +3,28 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.3",
+    "autoprefixer": "^9.8.6",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "postcss": "^7.0.35",
+    "prettier": "^2.2.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.3"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "scripts": {
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [

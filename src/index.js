@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {BrowserRouter as Router} from 'react-router-dom';
+
+import './index.css';
+
+import App from './components/app';
 
 
 ReactDOM.render(
-    <h1>Test</h1>,
+    <Router>
+      <App />
+    </Router>,
   document.getElementById('root')
 );
