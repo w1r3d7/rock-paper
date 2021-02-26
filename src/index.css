@@ -6,8 +6,60 @@ body {
   @apply font-mono bg-gradient-to-r from-blue-50 to-blue-100;
 }
 
+.icon {
+  @apply sm:text-9xl text-black text-5xl;
+
+
+}
+
+.icon svg {
+  animation-name: col;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes col {
+  100%,0%{
+    fill: rgb(255,0,0);
+  }
+  8%{
+    fill: rgb(255,127,0);
+  }
+  16%{
+    fill: rgb(255,255,0);
+  }
+  25%{
+    fill: rgb(127,255,0);
+  }
+  33%{
+    fill: rgb(0,255,0);
+  }
+  41%{
+    fill: rgb(0,255,127);
+  }
+  50%{
+    fill: rgb(0,255,255);
+  }
+  58%{
+    fill: rgb(0,127,255);
+  }
+  66%{
+    fill: rgb(0,0,255);
+  }
+  75%{
+    fill: rgb(127,0,255);
+  }
+  83%{
+    fill: rgb(255,0,255);
+  }
+  91%{
+    fill: rgb(255,0,127);
+  }
+}
+
 .sign {
-  @apply flex self-center p-10 rounded-full hover:bg-pink-500 focus:bg-pink-500 focus:outline-none bg-pink-200 mx-auto;
+  @apply flex self-center p-5 sm:p-10 rounded-full hover:bg-purple-500 focus:bg-purple-500 focus:outline-none bg-purple-200 mx-auto;
 }
 
 .sign:disabled {

@@ -1,52 +1,59 @@
-import React, {useState} from 'react';
-import useSound from 'use-sound';
-import {SignType} from '../../constants';
+import React from 'react';
+import {useHistory} from 'react-router-dom';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+
+import {SignType, Url} from '../../constants';
 import Sign from '../sign';
-import Icon from '../icon';
-import bazinga from './bazinga.swf.mp3';
+import {setSign} from '../../store/actions';
 
 
-const SignsList = () => {
-  const [selectedSign, setSelectedSign] = useState(null);
-  const [disabled, setDisabled] = useState(false);
+const SignsList = ({setSignAction}) => {
   const chooseSignMessage = <p className="self-center justify-self-center">Choose your sign!</p>;
-  const createPersonSign = () => <div className="sign"><Icon name={selectedSign}/></div>;
-  const userSign = selectedSign ? createPersonSign() : chooseSignMessage;
-
-  const [play] = useSound(bazinga);
+  const history = useHistory();
 
   const handleSignClick = (name) => {
-    setSelectedSign(name);
-    setDisabled(true);
-    play();
+    history.push(Url.GAME_RESULT);
+    setSignAction(name);
   };
 
   return (
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-5 grid-rows-3 gap-4">
         <div className="col-start-1 col-end-6 mx-auto">
             <Sign name={SignType.LIZARD}
-                  onSignClick={handleSignClick}
-                  isDisabled={disabled} />
+                  onSignClick={handleSignClick} />
         </div>
-        <div className="grid grid-cols-3 col-start-2 col-end-5">
+        <div
+            className="grid grid-cols-3
+        xl:col-start-2 xl:col-end-5
+        col-start-1 col-end-6
+        ">
           <Sign name={SignType.SCISSORS}
-                onSignClick={handleSignClick}
-                isDisabled={disabled} />
-          {userSign}
+                onSignClick={handleSignClick} />
+          {chooseSignMessage}
           <Sign name={SignType.ROCK}
-                onSignClick={handleSignClick}
-                isDisabled={disabled} />
+                onSignClick={handleSignClick} />
         </div>
-        <div className="grid grid-cols-2 col-start-2 col-end-5">
+        <div
+            className="grid grid-cols-2
+            xl:col-start-2 xl:col-end-5
+            col-start-1 col-end-6
+            ">
           <Sign name={SignType.PAPER}
-                onSignClick={handleSignClick}
-                isDisabled={disabled} />
+                onSignClick={handleSignClick} />
           <Sign name={SignType.SPOCK}
-                onSignClick={handleSignClick}
-                isDisabled={disabled} />
+                onSignClick={handleSignClick} />
         </div>
       </div>
   );
 };
 
-export default SignsList;
+SignsList.propTypes = {
+  setSignAction: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch) => ({
+  setSignAction: (sign) => dispatch(setSign(sign))
+});
+
+export default connect(null, mapDispatchToProps)(SignsList);

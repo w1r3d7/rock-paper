@@ -7,7 +7,7 @@ import {firstLetterUpperCase} from '../../utils';
 const Icon = ({name}) => {
   const iconName = `FaHand${firstLetterUpperCase(name)}`;
   const icon = React.createElement(FontAwesome[iconName]);
-  return <span className="text-9xl text-black">{icon}</span>;
+  return <span className="icon">{icon}</span>;
 };
 
 Icon.propTypes = {

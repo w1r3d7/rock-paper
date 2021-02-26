@@ -1,23 +1,25 @@
 import React from 'react';
-import {Switch, Route, Link} from 'react-router-dom';
+import {Switch, Route} from 'react-router-dom';
 
-import {GamePage, MainPage, RulesPage} from '../pages';
+import NotFound from '../not-found';
+import {GamePage, GameResultPage, MainPage, RulesPage} from '../pages';
 import Header from '../header';
+import {Url} from '../../constants';
+
 
 const App = () => (
     <div className="flex flex-col h-screen">
       <Header />
       <Switch>
-        <Route path='/' exact component={MainPage} />
-        <Route path='/game' component={GamePage} />
-        <Route path='/rules' component={RulesPage} />
-        <Route>
-          <div className="flex m-auto">
-            <Link className="border-red-500 border-2 p-5 rounded-full" to="/">Error 404, back to Main page</Link>
-          </div>
-        </Route>
+        <Route path={Url.HOME} exact component={MainPage} />
+        <Route path={Url.GAME} component={GamePage} />
+        <Route path={Url.RULES} component={RulesPage} />
+        <Route path={Url.GAME_RESULT} component={GameResultPage} />
+        <Route component={NotFound} />
       </Switch>
     </div>
 );
+
+
 
 export default App;
