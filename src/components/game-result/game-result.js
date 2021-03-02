@@ -5,30 +5,20 @@ import {Redirect} from 'react-router-dom';
 import useSound from 'use-sound';
 
 import PersonSign from '../person-sign';
-import {AI_COUNTER, SignType, Url} from '../../constants';
+import {AI_COUNTER, SignType} from '../../constants';
 import {getRandomElement, getResult} from '../../utils';
-import Button from '../button';
 import {changeScore} from '../../store/actions';
+import Result from '../result';
+import drumRoll from './Drum Roll - Gaming Sound Effect (HD).mp3';
 
-import bazinga from './bazinga.swf.mp3';
 
-
-const PlayAgain = ({result}) => (
-    <div className="flex flex-col items-center">
-      <span>{result}</span>
-      <Button url={Url.GAME} name="Play Again" />
-    </div>
-);
-
-PlayAgain.propTypes = {
-  result: PropTypes.string.isRequired,
-};
-
-const GameResult = ({chosenSign, changeScoreAction}) => {
+const GameResult = ({chosenSign, changeScoreAction, isSoundEnabled}) => {
   const [aiSign, setAiSign] = useState(SignType.LIZARD);
   const [counter, setCounter] = useState(0);
   const [result, setResult] = useState(null);
-  const [play] = useSound(bazinga);
+  const [play] = useSound(drumRoll, {soundEnabled: isSoundEnabled});
+
+  useEffect(() => play(), [play]);
 
   useEffect(() => {
     let timeout;
@@ -43,20 +33,26 @@ const GameResult = ({chosenSign, changeScoreAction}) => {
       const gameResult = getResult(chosenSign, aiSign);
       changeScoreAction(gameResult);
       setResult(gameResult);
-      play();
     }
     return () => clearTimeout(timeout);
-  }, [counter, changeScoreAction, play, aiSign, chosenSign]);
+  }, [counter, changeScoreAction, aiSign, chosenSign]);
 
   if (!chosenSign) {
     return <Redirect to="/" />;
   }
 
   return (
-    <div className="flex items-center">
-      <PersonSign selectedSign={chosenSign}/>
-      {result ? <PlayAgain result={result} /> : null}
-      <PersonSign selectedSign={aiSign} />
+    <div className="flex items-center m-auto w-3/4 justify-between">
+      <div className="flex flex-col items-center">
+        <span className="mb-3">You chose {chosenSign}</span>
+        <PersonSign selectedSign={chosenSign}/>
+      </div>
+
+      {result ? <Result result={result} /> : null}
+      <div className="flex flex-col items-center">
+        <span className="mb-3">AI chose {aiSign}</span>
+        <PersonSign selectedSign={aiSign} />
+      </div>
     </div>
   );
 };
@@ -64,9 +60,10 @@ const GameResult = ({chosenSign, changeScoreAction}) => {
 GameResult.propTypes = {
   chosenSign: PropTypes.string.isRequired,
   changeScoreAction: PropTypes.func.isRequired,
+  isSoundEnabled: PropTypes.bool.isRequired
 };
 
-const mapStateToProps = ({chosenSign}) => ({chosenSign});
+const mapStateToProps = ({chosenSign, isSoundEnabled}) => ({chosenSign, isSoundEnabled});
 const mapDispatchToProps = (dispatch) => ({
   changeScoreAction: (result) => changeScore(result, dispatch)
 });

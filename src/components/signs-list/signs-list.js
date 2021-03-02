@@ -13,8 +13,8 @@ const SignsList = ({setSignAction}) => {
   const history = useHistory();
 
   const handleSignClick = (name) => {
-    history.push(Url.GAME_RESULT);
     setSignAction(name);
+    history.push(Url.GAME_RESULT);
   };
 
   return (

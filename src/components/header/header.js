@@ -1,25 +1,71 @@
 import React from 'react';
+import useSound from 'use-sound';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {FaPlay, FaStop, FaVolumeOff, FaVolumeUp} from 'react-icons/all';
 import Button from '../button';
 
+import tbbt from './tbbt.mp3';
+import {changeSoundState} from '../../store/actions';
+
+const Header = ({score, isSoundEnabled, changeSoundStateAction}) => {
+  const [play, { stop, isPlaying}] = useSound(tbbt, {loop: true});
+  const handlePlayButtonClick = () => {
+    if (isPlaying) {
+      stop();
+    } else {
+      play();
+    }
+  };
+
+  const musicButton = () => {
+    const stopMusic = <><FaStop /> Stop Music</>;
+    const playMusic = <><FaPlay /> Play Music</>;
+    return <span className="flex items-center">{isPlaying ? stopMusic : playMusic}</span>;
+  };
+
+  const soundButton = () => {
+    const disableSound = <><FaVolumeOff /> Disable Sound</>;
+    const enableSound = <><FaVolumeUp /> Enable Sound</>;
+    return <span className="flex items-center">{isSoundEnabled ? disableSound : enableSound}</span>;
+  };
 
 
-const Header = ({score}) => (
-    <header className="mt-5">
-      <div className="flex flex-col">
-        <Button url="/" name="Home Page" />
-        <span className="mx-auto mt-5">Your score: {score}</span>
-      </div>
-
-      <h1 className="text-2xl font-bold text-center mt-5 mb-5">Rock, Paper, Scissors, Lizard and Spock!</h1>
-    </header>
-);
-
-Header.propTypes = {
-  score: PropTypes.number.isRequired
+  return (
+      <header className="m-5 flex flex-col">
+        <h1 className="text-2xl font-bold text-center m-5">Rock, Paper, Scissors, Lizard and Spock!</h1>
+        <div className="flex flex-col sm:flex-row items-center">
+          <Button url="/" name="Home Page" />
+          <button
+              type="button"
+              className="btn flex"
+              onClick={handlePlayButtonClick}
+              aria-label={isPlaying ? 'stop music' : 'play music'}
+          >{musicButton()}</button>
+          <button
+              type="button"
+              className="btn flex"
+              onClick={changeSoundStateAction}
+              aria-label={isSoundEnabled ? 'disable sound' : 'enable sound'}
+          >{soundButton()}</button>
+          <span className="mx-auto">Your score: {score}</span>
+        </div>
+      </header>
+  );
 };
 
-const mapStateToProps = ({score}) => ({score});
 
-export default connect(mapStateToProps)(Header);
+
+Header.propTypes = {
+  score: PropTypes.number.isRequired,
+  isSoundEnabled: PropTypes.bool.isRequired,
+  changeSoundStateAction: PropTypes.func.isRequired
+};
+
+const mapStateToProps = ({score, isSoundEnabled}) => ({score, isSoundEnabled});
+
+const mapDispatchToProps = (dispatch) => ({
+  changeSoundStateAction: () => dispatch(changeSoundState())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

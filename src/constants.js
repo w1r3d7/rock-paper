@@ -13,7 +13,7 @@ const Url = {
     GAME_RESULT: '/game-result'
 };
 
-const GameResult = {
+const GameResultType = {
     WIN: 'Win',
     LOSE: 'Lose',
     DRAW: 'Draw',
@@ -21,4 +21,4 @@ const GameResult = {
 
 const AI_COUNTER = 20;
 
-export {SignType, Url, GameResult, AI_COUNTER};
+export {SignType, Url, GameResultType, AI_COUNTER};

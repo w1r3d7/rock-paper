@@ -2,6 +2,8 @@
 const initialState = {
   chosenSign: null,
   score: 0,
+  isSoundEnabled: true,
+  name: ''
 };
 
 const reducer = (state = initialState, action) => {
@@ -20,6 +22,16 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         score: state.score - 1
+      };
+    case 'CHANGE_SOUND_STATE':
+      return {
+        ...state,
+        isSoundEnabled: !state.isSoundEnabled
+      };
+    case 'SET_USERNAME':
+      return {
+        ...state,
+        name: action.payload
       };
     default:
       return state;

@@ -1,8 +1,17 @@
-import {GameResult} from '../constants';
+import {GameResultType} from '../constants';
 
 const setSign = (sign) => ({
   type: 'SET_SIGN',
   payload: sign
+});
+
+const setUsername = (name) => ({
+  type: 'SET_USERNAME',
+  payload: name
+});
+
+const changeSoundState = () => ({
+  type: 'CHANGE_SOUND_STATE'
 });
 
 const increaseScore = () => ({
@@ -14,11 +23,11 @@ const decreaseScore = () => ({
 });
 
 const changeScore = (result, dispatch) => {
-  if (result === GameResult.WIN) {
+  if (result === GameResultType.WIN) {
     dispatch(increaseScore());
   }
 
-  if (result === GameResult.LOSE) {
+  if (result === GameResultType.LOSE) {
     dispatch(decreaseScore());
   }
 };
@@ -26,5 +35,7 @@ const changeScore = (result, dispatch) => {
 
 export {
   setSign,
-  changeScore
+  changeScore,
+  changeSoundState,
+  setUsername
 };
