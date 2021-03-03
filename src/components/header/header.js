@@ -8,7 +8,7 @@ import Button from '../button';
 import tbbt from './tbbt.mp3';
 import {changeSoundState} from '../../store/actions';
 
-const Header = ({score, isSoundEnabled, changeSoundStateAction}) => {
+const Header = ({score, isSoundEnabled, changeSoundStateAction, userName}) => {
   const [play, { stop, isPlaying}] = useSound(tbbt, {loop: true});
   const handlePlayButtonClick = () => {
     if (isPlaying) {
@@ -48,21 +48,24 @@ const Header = ({score, isSoundEnabled, changeSoundStateAction}) => {
               onClick={changeSoundStateAction}
               aria-label={isSoundEnabled ? 'disable sound' : 'enable sound'}
           >{soundButton()}</button>
-          <span className="mx-auto">Your score: {score}</span>
+          <span className="mx-auto">{userName} score: {score}</span>
         </div>
       </header>
   );
 };
 
-
+Header.defaultProps = {
+  userName: null
+};
 
 Header.propTypes = {
   score: PropTypes.number.isRequired,
   isSoundEnabled: PropTypes.bool.isRequired,
-  changeSoundStateAction: PropTypes.func.isRequired
+  changeSoundStateAction: PropTypes.func.isRequired,
+  userName: PropTypes.string,
 };
 
-const mapStateToProps = ({score, isSoundEnabled}) => ({score, isSoundEnabled});
+const mapStateToProps = ({score, isSoundEnabled, userName}) => ({score, isSoundEnabled, userName});
 
 const mapDispatchToProps = (dispatch) => ({
   changeSoundStateAction: () => dispatch(changeSoundState())

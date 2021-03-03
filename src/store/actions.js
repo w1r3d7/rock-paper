@@ -5,8 +5,8 @@ const setSign = (sign) => ({
   payload: sign
 });
 
-const setUsername = (name) => ({
-  type: 'SET_USERNAME',
+const setUserName = (name) => ({
+  type: 'SET_USER_NAME',
   payload: name
 });
 
@@ -37,5 +37,5 @@ export {
   setSign,
   changeScore,
   changeSoundState,
-  setUsername
+  setUserName
 };
