@@ -9,7 +9,7 @@ import {AI_COUNTER, SignType} from '../../constants';
 import {getRandomElement, getResult} from '../../utils';
 import {changeScore} from '../../store/actions';
 import Result from '../result';
-import drumRoll from './Drum Roll - Gaming Sound Effect (HD).mp3';
+import drumRoll from './drum-roll.mp3';
 
 
 const GameResult = ({chosenSign, changeScoreAction, isSoundEnabled}) => {

@@ -76,7 +76,7 @@ const Header = ({score, isSoundEnabled, changeSoundStateAction, userName}) => {
               onClick={changeSoundStateAction}
               aria-label={isSoundEnabled ? 'disable sound' : 'enable sound'}
           >{soundButton()}</button>
-          <span className="mx-auto">{userName} score: {score}</span>
+          <span className="mx-auto">{userName || 'Guest'} score: {score}</span>
         </div>
       </header>
   );
