@@ -58,19 +58,22 @@ const Records = () => {
   }
 
   return (
-      <table className="table-auto w-2/6 mx-auto">
-        <thead>
-        <tr>
-          <th className="border-2 border-purple-500">Name</th>
-          <th className="border-2 border-purple-500">Result</th>
-        </tr>
-        </thead>
-        <tbody>
-        {
-          normalizeLeaderboard(data).map(([id, item]) => <Record item={item} key={id} />)
-        }
-        </tbody>
-      </table>
+      <div>
+        <h2 className="text-center font-bold text-3xl">Leaderboard</h2>
+        <table className="table-auto w-2/6 mx-auto">
+          <thead>
+          <tr>
+            <th className="border-2 border-purple-500">Name</th>
+            <th className="border-2 border-purple-500">Result</th>
+          </tr>
+          </thead>
+          <tbody>
+          {
+            normalizeLeaderboard(data).map(([id, item]) => <Record item={item} key={id} />)
+          }
+          </tbody>
+        </table>
+      </div>
   );
 };
 
