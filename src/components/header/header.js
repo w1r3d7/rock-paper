@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import useSound from 'use-sound';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {FaPlay, FaStop, FaVolumeOff, FaVolumeUp} from 'react-icons/all';
+import {BsArrowsFullscreen, FaPlay, FaStop, FaVolumeOff, FaVolumeUp} from 'react-icons/all';
 import ButtonLink from '../button';
 
 import tbbt from './tbbt.mp3';
@@ -20,6 +20,14 @@ const Header = ({score, isSoundEnabled, changeSoundStateAction, userName}) => {
     } else {
       play();
     }
+  };
+
+  const toggleFullScreen = () => {
+    if (!document.fullscreenElement) {
+      return document.documentElement.requestFullscreen();
+    }
+
+    return document.exitFullscreen();
   };
 
   const handleMusicVolumeChange = ({target: {value}}) => {
@@ -58,6 +66,7 @@ const Header = ({score, isSoundEnabled, changeSoundStateAction, userName}) => {
 
   return (
       <header className="m-5 flex flex-col">
+        <button className="w-5" type="button" onClick={toggleFullScreen}><BsArrowsFullscreen /></button>
         <h1 className="text-2xl font-bold text-center m-5">Rock, Paper, Scissors, Lizard and Spock!</h1>
         <div className="flex flex-col sm:flex-row items-center">
           <ButtonLink url="/" name="Home Page" />
