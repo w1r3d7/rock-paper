@@ -2,16 +2,16 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Button = ({url, name}) => (
+const ButtonLink = ({url, name}) => (
     <Link
         to={url}
         className="btn"
         type="button">{name}</Link>
 );
 
-Button.propTypes = {
+ButtonLink.propTypes = {
   url: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };
 
-export default Button;
+export default ButtonLink;

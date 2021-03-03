@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import Button from '../button';
+import ButtonLink from '../button';
 import UserNameForm from '../user-name-form';
+import SubmitScore from '../submit-score';
 
 
 const MainPage = ({userName}) => {
   const buttons = () => (
       <>
-        <Button url="game" name="Start Game" />
-        <Button url="rules" name="Read Rules" />
-        <Button url="records" name="Leaderboard" />
-        <button className="btn" type="button">Send the result to the leaderboard</button>
+        <ButtonLink url="game" name="Start Game" />
+        <ButtonLink url="rules" name="Read Rules" />
+        <ButtonLink url="records" name="Leaderboard" />
+        <SubmitScore />
       </>
   );
   return (

@@ -11,6 +11,10 @@ const getRandomElement = (list) => {
   return list[randomElement];
 };
 
+const getVolume = (volume) => volume / 100;
+
+const normalizeLeaderboard = (list) => list.sort(([,a], [,b]) => b.score - a.score).slice(0, 10);
+
 const getResult = (person, ai) => {
   switch (person) {
     case SignType.SPOCK:
@@ -63,4 +67,4 @@ const getResult = (person, ai) => {
   }
 };
 
-export {firstLetterUpperCase, getRandomElement, getResult};
+export {firstLetterUpperCase, getRandomElement, getResult, getVolume,normalizeLeaderboard};

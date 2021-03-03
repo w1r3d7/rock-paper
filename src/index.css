@@ -8,16 +8,18 @@ body {
 
 .icon {
   @apply sm:text-9xl text-black text-5xl;
-
-
 }
 
 .icon svg {
-  animation-name: col;
-  animation-duration: 10s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  @apply fill-current text-purple-700 ;
 }
+
+/*.icon svg {*/
+/*  animation-name: col;*/
+/*  animation-duration: 10s;*/
+/*  animation-timing-function: linear;*/
+/*  animation-iteration-count: infinite;*/
+/*}*/
 
 @keyframes col {
   100%,0%{
@@ -59,14 +61,38 @@ body {
 }
 
 .sign {
-  transition: background-color 0.5s ease;
-  @apply flex self-center p-5 sm:p-10 rounded-full hover:bg-purple-500 focus:bg-purple-500 focus:outline-none bg-purple-200 mx-auto;
+  transition: all 0.5s ease;
+  @apply flex self-center p-5 sm:p-10 rounded-full
+  transform hover:scale-110
+  hover:bg-purple-500
+  hover:shadow-lg
+  hover:border-purple-500
+  focus:bg-purple-500
+  focus:outline-none
+  border-2
+  border-purple-300
+  mx-auto;
+}
+
+.sign:hover svg {
+  @apply text-blue-50;
 }
 
 .btn {
   transition: background-color 0.5s ease;
   @apply
   m-auto flex-initial text-purple-600
+  my-auto px-5 py-1 border border-purple-200
+  hover:bg-purple-700 hover:text-purple-100
+  focus:bg-purple-700 focus:text-purple-100
+  focus:outline-none
+  rounded-full
+}
+
+.volume-input {
+  transition: background-color 0.5s ease;
+  @apply
+  m-auto flex-initial text-purple-600 bg-transparent w-24
   my-auto px-5 py-1 border border-purple-200
   hover:bg-purple-700 hover:text-purple-100
   focus:bg-purple-700 focus:text-purple-100
